@@ -1,8 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
 
 import React, { Component } from 'react';
 import {
@@ -16,6 +11,14 @@ import {
 
 export default class AwesomeProject extends Component {
 
+  state = {
+    text: "Press Start...",
+    finish: "YOU WON!"
+  };
+
+  onButtonPress = () => {
+    this.setState({text: this.state.finish});
+  };
 
   render() {
     return (
@@ -23,9 +26,9 @@ export default class AwesomeProject extends Component {
         <Image source={require('./images/GBBG.png')} style={styles.backgroundImage}>
           <View style={styles.backgroundView}>
             <Text style={styles.title}>THE EASIEST GAME</Text>
-            <Text style={styles.instructions}>Press start...</Text>
+            <Text style={styles.instructions}>{this.state.text}</Text>
           </View>
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity onPress={this.onButtonPress} style={styles.button}>
             <Text style={styles.start}>START</Text>
           </TouchableOpacity>
         </Image>
@@ -79,7 +82,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 22,
     fontWeight: '800',
-    backgroundColor: '#606c78',
     padding: 2,
   }
 
