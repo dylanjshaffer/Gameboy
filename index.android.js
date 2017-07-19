@@ -9,6 +9,27 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
+class Blink extends Component {
+
+  constructor(props){
+    super(props);
+    this.state = {showText: true};
+    setInterval(() => {
+      this.setState(previousState => {
+        return { showText: !previousState.showText};
+      });
+    }, 600);
+  }
+
+  render() {
+    let display = this.state.showText ? this.props.text : ' ';
+    return (
+      <Text style={this.props.style}>{display}</Text>
+    );
+  }
+}
+
+
 export default class AwesomeProject extends Component {
 
   state = {
@@ -26,7 +47,7 @@ export default class AwesomeProject extends Component {
         <Image source={require('./images/GBBG.png')} style={styles.backgroundImage}>
           <View style={styles.backgroundView}>
             <Text style={styles.title}>THE EASIEST GAME</Text>
-            <Text style={styles.instructions}>{this.state.text}</Text>
+            <Blink style={styles.instructions} text={this.state.text} />
           </View>
           <TouchableOpacity onPress={this.onButtonPress} style={styles.button}>
             <Text style={styles.start}>START</Text>
