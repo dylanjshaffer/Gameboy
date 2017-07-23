@@ -29,16 +29,31 @@ class Blink extends Component {
   }
 }
 
+class GameboyButton extends Component {
 
-export default class AwesomeProject extends Component {
+  constructor(props) {
+    super(props);
+  }
 
-  state = {
-    text: "Press Start...",
-    finish: "YOU WON!"
+  render() {
+    return (
+      <TouchableOpacity className="GameboyButton" style={this.props.style} onPress={this.props.onPress}>
+        <Text style={styles.btnText}>{this.props.btnText}</Text>
+      </TouchableOpacity>
+    );
+  }
+}
+
+export default class Gameboy extends Component {
+
+  state = {text: "Press Start..."};
+
+  pressStart = (event) => {
+    this.setState({text: "YOU WON!!!"});
   };
 
-  onButtonPress = () => {
-    this.setState({text: this.state.finish});
+  pressBack = (event) => {
+    this.setState({text: "Press Start..."});
   };
 
   render() {
@@ -49,14 +64,16 @@ export default class AwesomeProject extends Component {
             <Text style={styles.title}>THE EASIEST GAME</Text>
             <Blink style={styles.instructions} text={this.state.text} />
           </View>
-          <TouchableOpacity onPress={this.onButtonPress} style={styles.button}>
-            <Text style={styles.start}>START</Text>
-          </TouchableOpacity>
+          <View style={styles.btnPad}>
+            <GameboyButton style={styles.btn} btnText="BACK" onPress={this.pressBack}/>
+            <GameboyButton style={styles.btn} btnText="START" onPress={this.pressStart}/>
+          </View>
         </Image>
       </View>
     );
   }
 }
+
 
 const styles = StyleSheet.create({
   container: {
@@ -89,16 +106,22 @@ const styles = StyleSheet.create({
     color: '#202a1c',
     backgroundColor: 'rgba(0,0,0,0)',
   },
-  button: {
+  btnPad: {
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "flex-end",
+    bottom: '15%',
+  },
+  btn: {
     width: '20%',
-    marginLeft: '40%',
+    height: '15%',
     borderRadius: 5,
     borderWidth: 1,
     borderColor: '#606c78',
     backgroundColor: '#606c78',
-    bottom: '10%',
   },
-  start: {
+  btnText: {
     color: 'black',
     textAlign: 'center',
     fontSize: 22,
@@ -109,4 +132,4 @@ const styles = StyleSheet.create({
 
 });
 
-AppRegistry.registerComponent('AwesomeProject', () => AwesomeProject);
+AppRegistry.registerComponent('Gameboy', () => Gameboy);

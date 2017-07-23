@@ -12,7 +12,7 @@ import {
   View
 } from 'react-native';
 
-export default class AwesomeProject extends Component {
+export default class Gameboy extends Component {
   render() {
     return (
       <View style={styles.container}>
@@ -50,4 +50,4 @@ const styles = StyleSheet.create({
   },
 });
 
-AppRegistry.registerComponent('AwesomeProject', () => AwesomeProject);
+AppRegistry.registerComponent('Gameboy', () => Gameboy);
