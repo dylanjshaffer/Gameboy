@@ -44,16 +44,23 @@ class GameboyButton extends Component {
   }
 }
 
+
 export default class Gameboy extends Component {
 
-  state = {text: "Press Start..."};
-
-  pressStart = (event) => {
-    this.setState({text: "YOU WON!!!"});
+  state = {
+    text: "Press Start...",
   };
 
+  pressStart = (event) => {
+    this.setState({
+      text: "YOU WON!!!",
+    });
+  }
+
   pressBack = (event) => {
-    this.setState({text: "Press Start..."});
+    this.setState({
+      text: "Press Start...",
+    });
   };
 
   render() {
@@ -61,8 +68,9 @@ export default class Gameboy extends Component {
       <View style={styles.container}>
         <Image source={require('./images/GBBG.png')} style={styles.backgroundImage}>
           <View style={styles.backgroundView}>
-            <Text style={styles.title}>THE EASIEST GAME</Text>
+            <Image source={require('./images/title.png')} style={styles.title}/>
             <Blink style={styles.instructions} text={this.state.text} />
+            <Text style={styles.victory} text={this.state.text} />
           </View>
           <View style={styles.btnPad}>
             <GameboyButton style={styles.btn} btnText="BACK" onPress={this.pressBack}/>
@@ -92,14 +100,20 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0,0,0,0)',
   },
   title: {
-    fontSize: 22,
-    fontWeight: '600',
+    marginLeft: '27%',
+  },
+  instructions: {
+    fontSize: 16,
+    opacity: 0.9,
+    paddingTop: 15,
+    fontWeight: 'bold',
     textAlign: 'center',
     color: '#202a1c',
     backgroundColor: 'rgba(0,0,0,0)',
   },
-  instructions: {
+  victory: {
     fontSize: 16,
+    opacity: 0.9,
     paddingTop: 15,
     fontWeight: 'bold',
     textAlign: 'center',
@@ -117,7 +131,6 @@ const styles = StyleSheet.create({
     width: '20%',
     height: '15%',
     borderRadius: 5,
-    borderWidth: 1,
     borderColor: '#606c78',
     backgroundColor: '#606c78',
   },
